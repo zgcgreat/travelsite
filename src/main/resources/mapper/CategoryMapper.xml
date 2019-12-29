@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.mapper.CategoryMapper">
+    <resultMap id="CategoryMap" type="com.itcast.domain.Category">
+        <id column="cid" property="cid"/>
+        <result column="cname" property="cname"/>
+
+    </resultMap>
+    <select id="findAll"  resultMap="CategoryMap">
+        select cid,cname
+        from tab_category
+    </select>
+
+
+
+</mapper>

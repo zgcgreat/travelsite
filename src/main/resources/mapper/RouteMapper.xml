@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itcast.mapper.RouteMapper">
+    <resultMap id="RouteMap" type="com.itcast.domain.Route">
+        <result column="rid" property="rid"/>
+        <result column="rname" property="rname"/>
+        <result column="price" property="price"/>
+        <result column="routeIntroduce" property="routeIntroduce"/>
+        <result column="rflag" property="rflag"/>
+        <result column="rdate" property="rdate"/>
+        <result column="isThemeTour" property="isThemeTour"/>
+        <result column="count" property="count"/>
+        <result column="cid" property="cid"/>
+        <result column="rimage" property="rimage"/>
+        <result column="sid" property="sid"/>
+        <result column="sourceId" property="sourceId"/>
+    </resultMap>
+
+    <select id="findTotalCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*)
+        from tab_route
+        where
+        1=1
+        <if test="cid!=0">
+            cid = #{cid}
+        </if>
+        <if test="rname !=null and rname.length()>0">
+            and
+            rname like "%"#{rname}"%"
+        </if>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="RouteMap">
+        select *
+        from tab_route
+        where 1 = 1
+        <if test="cid !=0 ">
+            and
+            cid = #{cid}
+        </if>
+        <if test="rname !=null and rname.length()>0">
+            and
+            rname like "%"#{rname}"%"
+        </if>
+        limit #{start},#{pageSize}
+    </select>
+
+
+</mapper>
