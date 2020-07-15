@@ -1,5 +1,6 @@
 package com.itcast.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -13,6 +14,8 @@ import java.util.Properties;
  */
 public final class JedisUtil {
     private static JedisPool jedisPool;
+    @Autowired
+    private JedisProperties jedisProperties;
 
     static {
         //读取配置文件
